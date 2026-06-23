@@ -1,10 +1,17 @@
+import { RouterProvider } from "react-router-dom";
+
+import router from "./router";
+
+import ThemeProvider from "./context/ThemeContext";
+import AuthProvider from "./context/AuthContext";
+
 function App() {
   return (
-    <div className="bg-red-500 flex items-center justify-center">
-      <h1 className="text-white text-5xl font-bold">
-        SportHub
-      </h1>
-    </div>
+    <ThemeProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
