@@ -1,93 +1,154 @@
 import { useState } from "react";
-
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
 
   const navigate = useNavigate();
 
-  const [name,setName] =
-    useState("");
-
-  const [email,setEmail] =
-    useState("");
-
-  const [password,setPassword] =
-    useState("");
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: ""
+  });
 
   const handleSubmit = (e) => {
-
     e.preventDefault();
 
-    const user = {
-      name,
-      email,
-      password
-    };
-
-    localStorage.setItem(
-      "registeredUser",
-      JSON.stringify(user)
-    );
-
-    alert("Signup Successful");
+    alert("Signup Successful 🎉");
 
     navigate("/login");
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-xl shadow-lg w-96"
+    <div
+      className="
+      min-h-screen
+      flex
+      justify-center
+      items-center
+      bg-gradient-to-br
+      from-purple-900
+      via-blue-900
+      to-indigo-700
+      p-6
+      "
+    >
+      <div
+        className="
+        bg-white
+        p-10
+        rounded-3xl
+        shadow-2xl
+        w-full
+        max-w-md
+        "
       >
-
-        <h1 className="text-3xl font-bold mb-5 text-center">
-          Signup
-        </h1>
-
-        <input
-          type="text"
-          placeholder="Name"
-          className="border w-full p-3 mb-4"
-          onChange={(e)=>
-            setName(e.target.value)
-          }
-        />
-
-        <input
-          type="email"
-          placeholder="Email"
-          className="border w-full p-3 mb-4"
-          onChange={(e)=>
-            setEmail(e.target.value)
-          }
-        />
-
-        <input
-          type="password"
-          placeholder="Password"
-          className="border w-full p-3 mb-4"
-          onChange={(e)=>
-            setPassword(e.target.value)
-          }
-        />
-
-        <button
+        <h1
           className="
-          bg-blue-600
-          text-white
-          w-full
-          p-3
-          rounded
+          text-4xl
+          font-bold
+          text-center
+          mb-3
           "
         >
-          Signup
-        </button>
+          🚀 Signup
+        </h1>
 
-      </form>
+        <p className="text-center text-gray-500 mb-8">
+          Create your SportsHub account
+        </p>
 
+        <form onSubmit={handleSubmit}>
+
+          <input
+            type="text"
+            placeholder="Full Name"
+            required
+            value={form.name}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                name: e.target.value
+              })
+            }
+            className="
+            w-full
+            border
+            p-4
+            rounded-xl
+            mb-4
+            "
+          />
+
+          <input
+            type="email"
+            placeholder="Email"
+            required
+            value={form.email}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                email: e.target.value
+              })
+            }
+            className="
+            w-full
+            border
+            p-4
+            rounded-xl
+            mb-4
+            "
+          />
+
+          <input
+            type="password"
+            placeholder="Password"
+            required
+            value={form.password}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                password: e.target.value
+              })
+            }
+            className="
+            w-full
+            border
+            p-4
+            rounded-xl
+            mb-6
+            "
+          />
+
+          <button
+            type="submit"
+            className="
+            w-full
+            bg-purple-600
+            text-white
+            p-4
+            rounded-xl
+            font-bold
+            hover:bg-purple-700
+            duration-300
+            "
+          >
+            Create Account
+          </button>
+
+        </form>
+
+        <p className="text-center mt-6">
+          Already have an account?
+          <Link
+            to="/login"
+            className="text-purple-600 font-bold ml-2"
+          >
+            Login
+          </Link>
+        </p>
+
+      </div>
     </div>
   );
 }

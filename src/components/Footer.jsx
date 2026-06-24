@@ -2,14 +2,14 @@ function Footer() {
   return (
     <footer
       className="
-      bg-gray-900
-      text-white
-      py-6
-      text-center
+        bg-gray-900
+        text-white
+        py-6
+        text-center
       "
     >
       <h2 className="text-2xl font-bold">
-        SportsHub Pro
+        SportsHub 
       </h2>
 
       <p className="mt-2">
@@ -17,7 +17,7 @@ function Footer() {
       </p>
 
       <p className="mt-2 text-sm">
-        © 2026 SportsHub Pro
+        © 2026 SportsHub
       </p>
     </footer>
   );

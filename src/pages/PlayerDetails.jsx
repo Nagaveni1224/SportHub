@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 
 function PlayerDetails() {
@@ -24,9 +24,13 @@ function PlayerDetails() {
         setPlayer(data.players?.[0]);
 
       } catch (error) {
+
         console.log(error);
+
       } finally {
+
         setLoading(false);
+
       }
     };
 
@@ -34,36 +38,115 @@ function PlayerDetails() {
 
   }, [id]);
 
-  if (loading) return <Loading />;
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (!player) {
+    return (
+      <h1 className="text-center text-3xl mt-10">
+        Player Not Found 😔
+      </h1>
+    );
+  }
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
+    <div className="max-w-6xl mx-auto p-6">
 
-      <img
-        src={player?.strThumb}
-        alt={player?.strPlayer}
-        className="w-full max-h-[500px] object-cover rounded-xl"
-      />
+      <div
+        className="
+        bg-white
+        rounded-3xl
+        shadow-xl
+        overflow-hidden
+        "
+      >
 
-      <h1 className="text-4xl font-bold mt-6">
-        {player?.strPlayer}
-      </h1>
+        <img
+          src={
+            player.strCutout ||
+            player.strThumb ||
+            player.strRender
+          }
+          alt={player.strPlayer}
+          className="
+          w-full
+          h-[450px]
+          object-contain
+          bg-gray-100
+          "
+        />
 
-      <p className="mt-3">
-        Team: {player?.strTeam}
-      </p>
+        <div className="p-8">
 
-      <p>
-        Nationality: {player?.strNationality}
-      </p>
+          <h1 className="text-5xl font-bold mb-6">
+            👤 {player.strPlayer}
+          </h1>
 
-      <p>
-        Birth Date: {player?.dateBorn}
-      </p>
+          <div className="grid md:grid-cols-2 gap-6 text-lg">
 
-      <p className="mt-4">
-        {player?.strDescriptionEN}
-      </p>
+            <p>
+              <strong>Sport:</strong>{" "}
+              {player.strSport}
+            </p>
+
+            <p>
+              <strong>Team:</strong>{" "}
+              {player.strTeam}
+            </p>
+
+            <p>
+              <strong>Nationality:</strong>{" "}
+              {player.strNationality}
+            </p>
+
+            <p>
+              <strong>Birth Date:</strong>{" "}
+              {player.dateBorn}
+            </p>
+
+            <p>
+              <strong>Gender:</strong>{" "}
+              {player.strGender}
+            </p>
+
+            <p>
+              <strong>Position:</strong>{" "}
+              {player.strPosition}
+            </p>
+
+            <p>
+              <strong>Height:</strong>{" "}
+              {player.strHeight}
+            </p>
+
+            <p>
+              <strong>Weight:</strong>{" "}
+              {player.strWeight}
+            </p>
+
+          </div>
+
+          <div className="mt-8">
+
+            <h2 className="text-3xl font-bold mb-4">
+              Biography
+            </h2>
+
+            <p className="text-gray-700 leading-8">
+              {player.strDescriptionEN
+                ? player.strDescriptionEN.slice(
+                    0,
+                    1500
+                  )
+                : "No biography available."}
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
   );

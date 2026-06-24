@@ -13,48 +13,44 @@ function Sports() {
 
   return (
     <div className="min-h-screen bg-slate-100">
-
       <div className="max-w-7xl mx-auto py-16 pb-40">
+        <div className="text-center mb-32">
+          <h1
+            className="
+              text-6xl
+              font-extrabold
+              bg-gradient-to-r
+              from-blue-600
+              to-purple-600
+              bg-clip-text
+              text-transparent
+            "
+          >
+            Explore Sports 🏆
+          </h1>
 
-       <div className="text-center mb-32">
+          <p
+            className="
+              text-2xl
+              font-bold
+              text-gray-700
+              mt-6
+              text-center
+            "
+          >
+            Choose your favorite sport and discover players,
+            leagues, live scores, venues, highlights and more.
+          </p>
+        </div>
 
-
-  <h1
-    className="
-    text-6xl
-    font-extrabold
-    bg-gradient-to-r
-    from-blue-600
-    to-purple-600
-    bg-clip-text
-    text-transparent
-    "
-  >
-    Explore Sports 🏆
-  </h1>
-
-  <p
-    className="
-    text-2xl
-    font-bold
-    text-gray-700
-    mt-6
-    text-center
-    "
-  >
-    Choose your favorite sport and discover players,
-    leagues, live scores, venues, highlights and more.
-  </p>
-
-</div>
         <div
           className="
-          grid
-          grid-cols-1
-          sm:grid-cols-2
-          md:grid-cols-3
-          lg:grid-cols-4
-          gap-8
+            grid
+            grid-cols-1
+            sm:grid-cols-2
+            md:grid-cols-3
+            lg:grid-cols-4
+            gap-8
           "
         >
           {sports.map((sport) => (
@@ -64,16 +60,16 @@ function Sports() {
             >
               <div
                 className="
-                bg-white
-                rounded-3xl
-                shadow-lg
-                p-8
-                text-center
-                hover:scale-105
-                hover:bg-blue-600
-                hover:text-white
-                duration-300
-                cursor-pointer
+                  bg-white
+                  rounded-3xl
+                  shadow-lg
+                  p-8
+                  text-center
+                  hover:scale-105
+                  hover:bg-blue-600
+                  hover:text-white
+                  duration-300
+                  cursor-pointer
                 "
               >
                 <div className="text-6xl mb-4">
@@ -91,9 +87,7 @@ function Sports() {
             </Link>
           ))}
         </div>
-
       </div>
-
     </div>
   );
 }

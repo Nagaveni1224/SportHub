@@ -1,7 +1,6 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 function SportDetails() {
-
   const { sport } = useParams();
 
   const sportIcons = {
@@ -11,80 +10,118 @@ function SportDetails() {
     baseball: "⚾",
     volleyball: "🏐",
     hockey: "🏑",
-    rugby: "🏉"
+    rugby: "🏉",
   };
 
-  return (
-    <div className="max-w-7xl mx-auto p-10">
+  const dashboardItems = [
+    {
+      title: "Players",
+      emoji: "👤",
+      desc: `View top players of ${sport}`,
+      path: "players",
+    },
+    {
+      title: "Teams",
+      emoji: "🏆",
+      desc: "Browse famous teams",
+      path: "teams",
+    },
+    {
+      title: "Live Scores",
+      emoji: "📊",
+      desc: "Check ongoing matches",
+      path: "livescores",
+    },
+    {
+      title: "Leagues",
+      emoji: "🥇",
+      desc: "Explore leagues and tournaments",
+      path: "leagues",
+    },
+    {
+      title: "Venues",
+      emoji: "🏟️",
+      desc: "Famous stadiums and grounds",
+      path: "venues",
+    },
+    {
+      title: "Highlights",
+      emoji: "🎥",
+      desc: "Match highlights and moments",
+      path: "highlights",
+    },
+  ];
 
-      <h1 className="text-5xl font-bold text-center mb-10">
+  return (
+    <div className="max-w-7xl mx-auto p-10 min-h-screen">
+      <h1 className="text-6xl font-extrabold text-center mb-4">
         {sportIcons[sport]} {sport.toUpperCase()}
       </h1>
 
-      <div className="grid md:grid-cols-3 gap-6">
+      <p className="text-center text-2xl font-semibold text-gray-600 mb-12">
+        Explore Players, Teams, Live Scores, Leagues,
+        Venues and Highlights
+      </p>
 
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <h2 className="text-2xl font-bold mb-3">
-            Players
-          </h2>
+      <Link
+        to="/sports"
+        className="
+          inline-block
+          mb-8
+          bg-blue-600
+          text-white
+          px-5
+          py-2
+          rounded-lg
+          hover:bg-blue-700
+        "
+      >
+        ← Back to Sports
+      </Link>
 
-          <p>
-            View top players of {sport}
-          </p>
-        </div>
+      <div className="grid md:grid-cols-3 gap-8">
+        {dashboardItems.map((item) => (
+          <Link
+            key={item.title}
+            to={`/sports/${sport}/${item.path}`}
+          >
+            <div
+              className="
+                group
+                bg-white
+                rounded-3xl
+                shadow-xl
+                p-8
+                text-center
+                hover:scale-105
+                hover:shadow-2xl
+                hover:bg-blue-600
+                hover:text-white
+                duration-300
+                cursor-pointer
+                border
+              "
+            >
+              <div className="text-5xl mb-4">
+                {item.emoji}
+              </div>
 
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <h2 className="text-2xl font-bold mb-3">
-            Teams
-          </h2>
+              <h2 className="text-2xl font-bold mb-3">
+                {item.title}
+              </h2>
 
-          <p>
-            Browse famous teams
-          </p>
-        </div>
-
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <h2 className="text-2xl font-bold mb-3">
-            Live Scores
-          </h2>
-
-          <p>
-            Check ongoing matches
-          </p>
-        </div>
-
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <h2 className="text-2xl font-bold mb-3">
-            Leagues
-          </h2>
-
-          <p>
-            Explore leagues and tournaments
-          </p>
-        </div>
-
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <h2 className="text-2xl font-bold mb-3">
-            Venues
-          </h2>
-
-          <p>
-            Famous stadiums and grounds
-          </p>
-        </div>
-
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <h2 className="text-2xl font-bold mb-3">
-            Highlights
-          </h2>
-
-          <p>
-            Match highlights and moments
-          </p>
-        </div>
-
+              <p
+                className="
+                  text-gray-600
+                  group-hover:text-white
+                "
+              >
+                {item.desc}
+              </p>
+            </div>
+          </Link>
+        ))}
       </div>
-
     </div>
   );
 }

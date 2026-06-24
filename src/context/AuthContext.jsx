@@ -1,4 +1,8 @@
-import { createContext, useState, useEffect } from "react";
+import {
+  createContext,
+  useState,
+  useEffect,
+} from "react";
 
 export const AuthContext = createContext();
 
@@ -7,7 +11,7 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     const savedUser = JSON.parse(
-      localStorage.getItem("user")
+      localStorage.getItem("user") || "null"
     );
 
     if (savedUser) {
@@ -34,7 +38,7 @@ function AuthProvider({ children }) {
       value={{
         user,
         login,
-        logout
+        logout,
       }}
     >
       {children}

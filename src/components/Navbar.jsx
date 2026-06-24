@@ -16,165 +16,102 @@ function Navbar() {
 
   return (
     <nav
-      className={`
-        ${
-          darkMode
-            ? "bg-gray-900 text-white"
-            : "bg-blue-900 text-white"
-        }
-        shadow-xl
-        sticky
-        top-0
-        z-50
-      `}
+      className={`${
+        darkMode
+          ? "bg-gray-900 text-white"
+          : "bg-blue-900 text-white"
+      } px-6 py-3 flex justify-between items-center shadow-md`}
     >
-      <div
-        className="
-        max-w-7xl
-        mx-auto
-        px-8
-        py-5
-        flex
-        justify-between
-        items-center
-        "
+      <NavLink
+        to="/"
+        className="flex items-center gap-3"
       >
-        {/* Logo */}
-        <h1
-          className="
-          flex
-          items-center
-          gap-3
-          text-4xl
-          font-extrabold
-          cursor-pointer
-          "
-        >
-          <img
-            src={favicon}
-            alt="SportsHub Logo"
-            className="w-12 h-12"
-          />
+        <img
+        src={favicon}
+        alt="SportsHub Logo"
+        className="w-10 h-10"
+        />
 
-          <span>
-            SportsHub 
-          </span>
+        <h1 className="text-3xl font-bold">
+          SportsHub
         </h1>
+      </NavLink>
 
-        {/* Navigation Links */}
-        <div
-          className="
-          flex
-          items-center
-          gap-8
-          text-xl
-          font-semibold
-          "
+      <div className="flex items-center gap-8 text-lg font-semibold">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "text-yellow-300"
+              : "hover:text-yellow-300"
+          }
         >
-          <NavLink
-            to="/"
-            className="hover:text-yellow-300 duration-300"
-          >
-            Home
-          </NavLink>
+          Home
+        </NavLink>
 
-          <NavLink
-            to="/sports"
-            className="hover:text-yellow-300 duration-300"
-          >
-            Sports
-          </NavLink>
+        <NavLink
+          to="/sports"
+          className={({ isActive }) =>
+            isActive
+              ? "text-yellow-300"
+              : "hover:text-yellow-300"
+          }
+        >
+          Sports
+        </NavLink>
 
-          <NavLink
-            to="/players"
-            className="hover:text-yellow-300 duration-300"
-          >
-            Players
-          </NavLink>
+        {!user ? (
+          <>
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-yellow-300"
+                  : "hover:text-yellow-300"
+              }
+            >
+              Login
+            </NavLink>
 
-          <NavLink
-            to="/leagues"
-            className="hover:text-yellow-300 duration-300"
-          >
-            Leagues
-          </NavLink>
+            <NavLink
+              to="/signup"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-yellow-300"
+                  : "hover:text-yellow-300"
+              }
+            >
+              Signup
+            </NavLink>
+          </>
+        ) : (
+          <>
+            <span>
+              👋 Hi, {user?.name || "User"}
+            </span>
 
-          <NavLink
-            to="/scores"
-            className="hover:text-yellow-300 duration-300"
-          >
-            Scores
-          </NavLink>
-
-          <NavLink
-            to="/venues"
-            className="hover:text-yellow-300 duration-300"
-          >
-            Venues
-          </NavLink>
-
-          {user ? (
-            <>
-              <span className="text-lg">
-                👋 Hi, {user.name}
-              </span>
-
-              <button
-                onClick={logout}
-                className="
+            <button
+              onClick={logout}
+              className="
                 bg-red-500
                 hover:bg-red-600
                 px-4
                 py-2
-                rounded-lg
-                duration-300
-                "
-              >
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <NavLink
-                to="/login"
-                className="hover:text-yellow-300 duration-300"
-              >
-                Login
-              </NavLink>
+                rounded
+                transition
+              "
+            >
+              Logout
+            </button>
+          </>
+        )}
 
-              <NavLink
-                to="/signup"
-                className="
-                bg-white
-                text-blue-900
-                px-4
-                py-2
-                rounded-lg
-                hover:scale-105
-                duration-300
-                "
-              >
-                Signup
-              </NavLink>
-            </>
-          )}
-
-          {/* Theme Toggle */}
-          <button
-            onClick={toggleTheme}
-            className="
-            text-2xl
-            hover:scale-110
-            duration-300
-            "
-          >
-            {darkMode ? (
-              <FaSun />
-            ) : (
-              <FaMoon />
-            )}
-          </button>
-        </div>
+        <button
+          onClick={toggleTheme}
+          className="text-2xl hover:text-yellow-300"
+        >
+          {darkMode ? <FaSun /> : <FaMoon />}
+        </button>
       </div>
     </nav>
   );

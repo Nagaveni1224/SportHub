@@ -1,44 +1,36 @@
-import {
-  useEffect,
-  useState
-} from "react";
-
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 
 function Leagues() {
 
-  const [leagues,setLeagues] =
-    useState([]);
+  const { sport } = useParams();
 
-  const [loading,setLoading] =
-    useState(false);
+  const [leagues, setLeagues] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(()=>{
+  useEffect(() => {
 
-    const fetchLeagues =
-      async()=>{
+    setLoading(true);
 
-      try{
+    const fetchLeagues = async () => {
 
-        setLoading(true);
+      try {
 
-        const response =
-          await fetch(
-            "https://www.thesportsdb.com/api/v1/json/3/all_leagues.php"
-          );
-
-        const data =
-          await response.json();
-
-        setLeagues(
-          data.leagues
+        const response = await fetch(
+          `https://www.thesportsdb.com/api/v1/json/3/search_all_leagues.php?s=${sport}`
         );
 
-      }catch(error){
+        const data = await response.json();
 
-        console.log(error);
+        setLeagues(data.countries || []);
 
-      }finally{
+      } catch (error) {
+
+        console.error("Error fetching leagues:", error);
+        setLeagues([]);
+
+      } finally {
 
         setLoading(false);
 
@@ -47,60 +39,72 @@ function Leagues() {
 
     fetchLeagues();
 
-  },[]);
+  }, [sport]);
 
-  if(loading){
+  if (loading) {
     return <Loading />;
   }
 
   return (
-
     <div className="max-w-7xl mx-auto p-6">
 
-      <h1
-        className="
-        text-4xl
-        font-bold
-        text-center
-        mb-10
-        "
-      >
-        Sports Leagues
+      <h1 className="text-5xl font-bold text-center mb-3">
+        🥇 {sport?.toUpperCase()} LEAGUES
       </h1>
 
-      <div
-        className="
-        grid
-        md:grid-cols-3
-        gap-5
-        "
-      >
+      <p className="text-center text-xl text-gray-600 font-semibold mb-10">
+        Explore leagues and tournaments of {sport}
+      </p>
 
-        {leagues.map((league)=>(
+      {leagues.length === 0 ? (
 
-          <div
-            key={league.idLeague}
-            className="
-            bg-white
-            p-5
-            rounded-xl
-            shadow-lg
-            "
-          >
+        <div className="text-center py-10">
+          <h2 className="text-3xl font-bold text-gray-500">
+            No leagues found 😔
+          </h2>
+        </div>
 
-            <h2 className="font-bold">
-              {league.strLeague}
-            </h2>
+      ) : (
 
-            <p>
-              {league.strSport}
-            </p>
+        <div className="grid md:grid-cols-3 gap-6">
 
-          </div>
+          {leagues.map((league) => (
 
-        ))}
+            <div
+              key={league.idLeague}
+              className="
+              bg-white
+              rounded-2xl
+              shadow-xl
+              p-8
+              text-center
+              hover:scale-105
+              hover:bg-yellow-500
+              hover:text-white
+              duration-300
+              border
+              "
+            >
 
-      </div>
+              <div className="text-5xl mb-4">
+                🏆
+              </div>
+
+              <h2 className="text-2xl font-bold">
+                {league.strLeague}
+              </h2>
+
+              <p className="mt-2 text-sm">
+                {league.strSport}
+              </p>
+
+            </div>
+
+          ))}
+
+        </div>
+
+      )}
 
     </div>
   );
