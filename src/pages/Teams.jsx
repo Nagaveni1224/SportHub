@@ -73,7 +73,7 @@ function Teams() {
 
         <div className="max-w-7xl mx-auto px-6 py-16">
 
-          {/* Heading */}
+          
 
           <div className="text-center mb-12">
 
@@ -87,7 +87,7 @@ function Teams() {
 
           </div>
 
-          {/* No Teams */}
+          
 
           {teams.length === 0 && (
             <div className="text-center py-20">
@@ -99,8 +99,7 @@ function Teams() {
             </div>
           )}
 
-          {/* Teams Grid */}
-
+          
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
 
             {teams.map((team) => (

@@ -53,10 +53,10 @@ function PlayerDetails() {
 
       <div className="max-w-[1500px] mx-auto px-8 lg:px-12">
 
-        {/* Main Card */}
+        
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
 
-          {/* Player Image */}
+        
           <div className="bg-gray-100 flex justify-center">
 
             <img
@@ -71,7 +71,7 @@ function PlayerDetails() {
 
           </div>
 
-          {/* Player Name */}
+        
 
           <div className="py-10 text-center">
 
@@ -83,7 +83,7 @@ function PlayerDetails() {
 
           </div>
 
-          {/* Information */}
+        
 
           <div className="px-8 pb-12">
 
@@ -114,7 +114,7 @@ function PlayerDetails() {
 
         </div>
 
-        {/* Biography */}
+        
 
         <div className="bg-white rounded-3xl shadow-xl mt-28 mb-28 px-20 py-20">
 

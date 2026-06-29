@@ -36,7 +36,7 @@ function Home() {
 
   return (
     <div className="bg-gray-100 min-h-screen">
-      {/* Hero Section */}
+    
       <section
         className="relative h-screen bg-cover bg-center"
         style={{
@@ -78,7 +78,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Features Section */}
+    
       <section className="py-20 bg-gradient-to-b from-gray-100 to-white">
         <div className="max-w-7xl mx-auto px-6">
          <div className="flex flex-col items-center text-center mb-16">

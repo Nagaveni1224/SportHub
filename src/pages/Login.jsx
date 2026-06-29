@@ -86,7 +86,7 @@ function Login() {
             />
           </div>
 
-          {/* Email */}
+        
           <div className="mb-6">
             <label className="block font-semibold mb-2">
               Email Address
@@ -117,7 +117,7 @@ function Login() {
             />
           </div>
 
-          {/* Password */}
+        
           <div className="mb-8">
             <label className="block font-semibold mb-2">
               Password

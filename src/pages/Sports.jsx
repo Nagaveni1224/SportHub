@@ -59,7 +59,7 @@ function Sports() {
         <div className="max-w-7xl mx-auto px-6 py-16">
 
         
-         {/* Heading */}
+        
 <div className="flex flex-col items-center justify-center text-center mb-12">
 
   <h1 className="text-6xl md:text-7xl font-extrabold text-white mb-5">
@@ -71,7 +71,7 @@ function Sports() {
     venues and highlights from sports around the world.
   </p>
 
-</div>          {/* Sports Cards */}
+</div>         
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
             {sports.map((sport) => (

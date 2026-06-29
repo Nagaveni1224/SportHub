@@ -61,8 +61,6 @@ function Leagues() {
 
         <div className="max-w-7xl mx-auto px-6 py-16">
 
-          {/* Heading */}
-
           <div className="text-center mb-12">
 
             <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-4">
@@ -75,8 +73,6 @@ function Leagues() {
 
           </div>
 
-          {/* Empty State */}
-
           {leagues.length === 0 && (
             <div className="text-center py-20">
 
@@ -86,8 +82,6 @@ function Leagues() {
 
             </div>
           )}
-
-          {/* League Cards */}
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
