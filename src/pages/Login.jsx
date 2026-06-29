@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+import { AuthContext } from "../context/AuthContext";
 
 function Login() {
   const { login } = useContext(AuthContext);
@@ -11,6 +12,13 @@ function Login() {
     email: "",
     password: "",
   });
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,157 +33,238 @@ function Login() {
 
   return (
     <div
-      className="min-h-screen bg-cover bg-center flex items-center justify-center px-6 py-12"
+      className="relative min-h-screen flex items-center justify-center bg-cover bg-center px-4 py-10"
       style={{
         backgroundImage:
           "url('https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1920')",
       }}
     >
+      
       <div className="absolute inset-0 bg-black/70"></div>
 
-      <div
-        className="
-          relative
-          w-full
-          max-w-2xl
-          bg-white/95
-          backdrop-blur-xl
-          rounded-3xl
-          shadow-2xl
-          p-10
-          md:p-14
-        "
+    <div
+        className="relative bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl"
+        style={{
+          width: "700px",
+          padding: "45px 55px",
+        }}
       >
-        <h1 className="text-6xl font-extrabold text-center mb-4">
+        <h1
+          style={{
+            textAlign: "center",
+            fontSize: "54px",
+            fontWeight: "800",
+            color: "#1f2937",
+          }}
+        >
           🔐 Login
         </h1>
 
-        <p className="text-center text-gray-500 text-lg mb-10">
+        <p
+          style={{
+            textAlign: "center",
+            color: "#6b7280",
+            fontSize: "22px",
+            marginTop: "10px",
+            marginBottom: "20px",
+          }}
+        >
           Welcome back! Sign in to continue.
         </p>
 
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            width: "92%",
+            margin: "0 auto",
+          }}
+        >
           {/* Username */}
-          <div className="mb-6">
-            <label className="block font-semibold mb-2">
+          <div style={{ marginBottom: "8px" }}>
+            <label
+              style={{
+                display: "block",
+                marginBottom: "8px",
+                fontSize: "18px",
+                fontWeight: "600",
+                color: "#374151",
+              }}
+            >
               Username
             </label>
 
-            <input
-              type="text"
-              placeholder="Enter your username"
-              required
-              value={form.name}
-              onChange={(e) =>
-                setForm({
-                  ...form,
-                  name: e.target.value,
-                })
-              }
-              className="
-                w-full
-                p-5
-                text-lg
-                rounded-2xl
-                border
-                border-gray-300
-                focus:outline-none
-                focus:ring-4
-                focus:ring-blue-300
-              "
-            />
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                height: "50px",
+                border: "1px solid #d1d5db",
+                borderRadius: "14px",
+                padding: "0 18px",
+              }}
+            >
+              <FaUser
+                style={{
+                  color: "#9ca3af",
+                  fontSize: "18px",
+                  marginRight: "12px",
+                }}
+              />
+
+              <input
+                type="text"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                placeholder="Enter your username"
+                required
+                style={{
+                  width: "100%",
+                  border: "none",
+                  outline: "none",
+                  fontSize: "16px",
+                  background: "transparent",
+                }}
+              />
+            </div>
           </div>
 
-        
-          <div className="mb-6">
-            <label className="block font-semibold mb-2">
+          
+          <div style={{ marginBottom: "8px" }}>
+            <label
+              style={{
+                display: "block",
+                marginBottom: "8px",
+                fontSize: "18px",
+                fontWeight: "600",
+                color: "#374151",
+              }}
+            >
               Email Address
             </label>
 
-            <input
-              type="email"
-              placeholder="Enter your email"
-              required
-              value={form.email}
-              onChange={(e) =>
-                setForm({
-                  ...form,
-                  email: e.target.value,
-                })
-              }
-              className="
-                w-full
-                p-5
-                text-lg
-                rounded-2xl
-                border
-                border-gray-300
-                focus:outline-none
-                focus:ring-4
-                focus:ring-blue-300
-              "
-            />
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                height: "50px",
+                border: "1px solid #d1d5db",
+                borderRadius: "14px",
+                padding: "0 18px",
+              }}
+            >
+              <FaEnvelope
+                style={{
+                  color: "#9ca3af",
+                  fontSize: "18px",
+                  marginRight: "12px",
+                }}
+              />
+
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="Enter your email"
+                required
+                style={{
+                  width: "100%",
+                  border: "none",
+                  outline: "none",
+                  fontSize: "16px",
+                  background: "transparent",
+                }}
+              />
+            </div>
           </div>
 
         
-          <div className="mb-8">
-            <label className="block font-semibold mb-2">
+          <div style={{ marginBottom: "15px" }}>
+            <label
+              style={{
+                display: "block",
+                marginBottom: "8px",
+                fontSize: "18px",
+                fontWeight: "600",
+                color: "#374151",
+              }}
+            >
               Password
             </label>
 
-            <input
-              type="password"
-              placeholder="Enter your password"
-              required
-              value={form.password}
-              onChange={(e) =>
-                setForm({
-                  ...form,
-                  password: e.target.value,
-                })
-              }
-              className="
-                w-full
-                p-5
-                text-lg
-                rounded-2xl
-                border
-                border-gray-300
-                focus:outline-none
-                focus:ring-4
-                focus:ring-blue-300
-              "
-            />
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                height: "50px",
+                border: "1px solid #d1d5db",
+                borderRadius: "14px",
+                padding: "0 18px",
+              }}
+            >
+              <FaLock
+                style={{
+                  color: "#9ca3af",
+                  fontSize: "18px",
+                  marginRight: "12px",
+                }}
+              />
+
+              <input
+                type="password"
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                placeholder="Enter your password"
+                required
+                style={{
+                  width: "100%",
+                  border: "none",
+                  outline: "none",
+                  fontSize: "16px",
+                  background: "transparent",
+                }}
+              />
+            </div>
           </div>
 
           <button
             type="submit"
-            className="
-              w-full
-              py-5
-              text-xl
-              font-bold
-              text-white
-              rounded-2xl
-              bg-gradient-to-r
-              from-blue-600
-              to-purple-600
-              hover:scale-105
-              transition-all
-              duration-300
-              shadow-xl
-            "
+            style={{
+              width: "100%",
+              height: "58px",
+              border: "none",
+              borderRadius: "14px",
+              background:
+                "linear-gradient(to right,#2563eb,#9333ea)",
+              color: "#fff",
+              fontSize: "20px",
+              fontWeight: "700",
+              cursor: "pointer",
+            }}
           >
             Login
           </button>
         </form>
 
-        <p className="text-center mt-8 text-lg">
+        <p
+          style={{
+            textAlign: "center",
+            marginTop: "30px",
+            fontSize: "18px",
+          }}
+        >
           Don't have an account?
 
           <Link
             to="/signup"
-            className="ml-2 text-blue-600 font-bold hover:text-purple-600"
+            style={{
+              marginLeft: "8px",
+              color: "#2563eb",
+              fontWeight: "700",
+              textDecoration: "none",
+            }}
           >
             Signup
           </Link>
