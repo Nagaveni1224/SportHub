@@ -1,118 +1,182 @@
-import { NavLink } from "react-router-dom";
-import { useContext } from "react";
-
-import favicon from "../assets/favicon.png";
-
+import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { ThemeContext } from "../context/ThemeContext";
-
-import { FaMoon, FaSun } from "react-icons/fa";
 
 function Navbar() {
+  const [open, setOpen] = useState(false);
+
   const { user, logout } = useContext(AuthContext);
 
-  const { darkMode, toggleTheme } =
-    useContext(ThemeContext);
-
   return (
-    <nav
-      className={`${
-        darkMode
-          ? "bg-gray-900 text-white"
-          : "bg-blue-900 text-white"
-      } px-6 py-3 flex justify-between items-center shadow-md`}
-    >
-      <NavLink
-        to="/"
-        className="flex items-center gap-3"
-      >
-        <img
-        src={favicon}
-        alt="SportsHub Logo"
-        className="w-10 h-10"
-        />
+    <nav className="sticky top-0 z-50 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 shadow-xl">
+      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
 
-        <h1 className="text-3xl font-bold">
-          SportsHub
-        </h1>
-      </NavLink>
-
-      <div className="flex items-center gap-8 text-lg font-semibold">
-        <NavLink
+        {/* Logo */}
+        <Link
           to="/"
-          className={({ isActive }) =>
-            isActive
-              ? "text-yellow-300"
-              : "hover:text-yellow-300"
-          }
+          className="text-3xl font-extrabold text-white"
         >
-          Home
-        </NavLink>
+          🏆 SportHub
+        </Link>
 
-        <NavLink
-          to="/sports"
-          className={({ isActive }) =>
-            isActive
-              ? "text-yellow-300"
-              : "hover:text-yellow-300"
-          }
-        >
-          Sports
-        </NavLink>
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center gap-8">
 
-        {!user ? (
-          <>
-            <NavLink
-              to="/login"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-yellow-300"
-                  : "hover:text-yellow-300"
-              }
-            >
-              Login
-            </NavLink>
+          <Link
+            to="/"
+            className="text-lg font-semibold text-white hover:text-yellow-300 transition"
+          >
+            Home
+          </Link>
 
-            <NavLink
-              to="/signup"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-yellow-300"
-                  : "hover:text-yellow-300"
-              }
-            >
-              Signup
-            </NavLink>
-          </>
-        ) : (
-          <>
-            <span>
-              👋 Hi, {user?.name || "User"}
-            </span>
+          <Link
+            to="/sports"
+            className="text-lg font-semibold text-white hover:text-yellow-300 transition"
+          >
+            Sports
+          </Link>
 
-            <button
-              onClick={logout}
-              className="
-                bg-red-500
-                hover:bg-red-600
-                px-4
-                py-2
-                rounded
-                transition
-              "
-            >
-              Logout
-            </button>
-          </>
-        )}
+          {user ? (
+            <>
+              <span
+  className="
+    inline-flex
+    items-center
+    justify-center
+    min-w-[110px]
+    px-8
+    py-2.5
+    bg-white
+    text-purple-700
+    rounded-xl
+    font-bold
+    text-lg
+    shadow-md
+  "
+>
+  👋 Hi, {user.name}
+</span>
 
+<button
+  onClick={logout}
+  className="
+    inline-flex
+    items-center
+    justify-center
+    min-w-[80px]
+    px-8
+    py-2.5
+    bg-red-500
+    text-white
+    rounded-xl
+    font-bold
+    text-lg
+    shadow-md
+    hover:bg-red-600
+    transition
+  "
+>
+  Logout
+</button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="text-lg font-semibold text-white hover:text-yellow-300 transition"
+              >
+                Login
+              </Link>
+
+              <Link
+  to="/signup"
+  className="
+    inline-flex
+    items-center
+    justify-center
+    min-w-[80px]
+    px-8
+    py-2.5
+    bg-white
+    text-purple-700
+    rounded-xl
+    font-bold
+    text-lg
+    shadow-md
+    hover:bg-yellow-300
+    hover:text-black
+    transition
+  "
+>
+  Signup
+</Link>
+            </>
+          )}
+
+        </div>
+
+        {/* Mobile Menu Button */}
         <button
-          onClick={toggleTheme}
-          className="text-2xl hover:text-yellow-300"
+          onClick={() => setOpen(!open)}
+          className="md:hidden text-white text-3xl"
         >
-          {darkMode ? <FaSun /> : <FaMoon />}
+          ☰
         </button>
+
       </div>
+
+      {/* Mobile Menu */}
+      {open && (
+        <div className="md:hidden bg-white shadow-lg">
+          <div className="flex flex-col p-5 gap-4">
+
+            <Link to="/" onClick={() => setOpen(false)}>
+              Home
+            </Link>
+
+            <Link to="/sports" onClick={() => setOpen(false)}>
+              Sports
+            </Link>
+
+            {user ? (
+              <>
+                <p className="font-bold text-purple-700">
+                  👋 Hi, {user.name}
+                </p>
+
+                <button
+                  onClick={() => {
+                    logout();
+                    setOpen(false);
+                  }}
+                  className="bg-red-500 text-white py-3 rounded-xl"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  onClick={() => setOpen(false)}
+                >
+                  Login
+                </Link>
+
+                <Link
+                  to="/signup"
+                  onClick={() => setOpen(false)}
+                  className="bg-blue-600 text-white text-center py-3 rounded-xl"
+                >
+                  Signup
+                </Link>
+              </>
+            )}
+
+          </div>
+        </div>
+      )}
+
     </nav>
   );
 }

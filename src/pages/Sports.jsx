@@ -2,91 +2,137 @@ import { Link } from "react-router-dom";
 
 function Sports() {
   const sports = [
-    { name: "Football", slug: "football", emoji: "⚽" },
-    { name: "Cricket", slug: "cricket", emoji: "🏏" },
-    { name: "Basketball", slug: "basketball", emoji: "🏀" },
-    { name: "Baseball", slug: "baseball", emoji: "⚾" },
-    { name: "Volleyball", slug: "volleyball", emoji: "🏐" },
-    { name: "Hockey", slug: "hockey", emoji: "🏑" },
-    { name: "Rugby", slug: "rugby", emoji: "🏉" },
+    {
+      name: "Football",
+      slug: "football",
+      emoji: "⚽",
+      color: "from-blue-600 to-cyan-500",
+    },
+    {
+      name: "Cricket",
+      slug: "cricket",
+      emoji: "🏏",
+      color: "from-green-600 to-emerald-500",
+    },
+    {
+      name: "Basketball",
+      slug: "basketball",
+      emoji: "🏀",
+      color: "from-orange-600 to-yellow-500",
+    },
+    {
+      name: "Baseball",
+      slug: "baseball",
+      emoji: "⚾",
+      color: "from-red-600 to-pink-500",
+    },
+    {
+      name: "Volleyball",
+      slug: "volleyball",
+      emoji: "🏐",
+      color: "from-purple-600 to-fuchsia-500",
+    },
+    {
+      name: "Hockey",
+      slug: "hockey",
+      emoji: "🏑",
+      color: "from-cyan-600 to-sky-500",
+    },
+    {
+      name: "Rugby",
+      slug: "rugby",
+      emoji: "🏉",
+      color: "from-indigo-600 to-violet-500",
+    },
   ];
 
   return (
-    <div className="min-h-screen bg-slate-100">
-      <div className="max-w-7xl mx-auto py-16 pb-40">
-        <div className="text-center mb-32">
-          <h1
-            className="
-              text-6xl
-              font-extrabold
-              bg-gradient-to-r
-              from-blue-600
-              to-purple-600
-              bg-clip-text
-              text-transparent
-            "
-          >
-            Explore Sports 🏆
-          </h1>
+    <div
+      className="min-h-screen bg-cover bg-center"
+      style={{
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1920')",
+      }}
+    >
+      <div className="min-h-screen bg-black/75">
 
-          <p
-            className="
-              text-2xl
-              font-bold
-              text-gray-700
-              mt-6
-              text-center
-            "
-          >
-            Choose your favorite sport and discover players,
-            leagues, live scores, venues, highlights and more.
-          </p>
-        </div>
+        <div className="max-w-7xl mx-auto px-6 py-16">
 
-        <div
-          className="
-            grid
-            grid-cols-1
-            sm:grid-cols-2
-            md:grid-cols-3
-            lg:grid-cols-4
-            gap-8
-          "
-        >
-          {sports.map((sport) => (
-            <Link
-              key={sport.slug}
-              to={`/sports/${sport.slug}`}
-            >
-              <div
-                className="
-                  bg-white
-                  rounded-3xl
-                  shadow-lg
-                  p-8
-                  text-center
-                  hover:scale-105
-                  hover:bg-blue-600
-                  hover:text-white
-                  duration-300
-                  cursor-pointer
-                "
+        
+         {/* Heading */}
+<div className="flex flex-col items-center justify-center text-center mb-12">
+
+  <h1 className="text-6xl md:text-7xl font-extrabold text-white mb-5">
+    Explore Sports 🏆
+  </h1>
+
+  <p className="w-full max-w-3xl mx-auto text-xl md:text-2xl text-gray-200 leading-relaxed">
+    Discover players, teams, leagues, live scores,
+    venues and highlights from sports around the world.
+  </p>
+
+</div>          {/* Sports Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            {sports.map((sport) => (
+              <Link
+                key={sport.slug}
+                to={`/sports/${sport.slug}`}
               >
-                <div className="text-6xl mb-4">
-                  {sport.emoji}
+                <div
+                  className={`
+                    bg-gradient-to-br ${sport.color}
+                    rounded-3xl
+                    p-8
+                    shadow-2xl
+                    text-white
+                    h-full
+                    flex flex-col
+                    items-center
+                    text-center
+                    hover:scale-105
+                    hover:-translate-y-2
+                    transition-all
+                    duration-300
+                  `}
+                >
+
+                  <div className="text-8xl mb-6">
+                    {sport.emoji}
+                  </div>
+
+                  <h2 className="text-3xl font-bold mb-4">
+                    {sport.name}
+                  </h2>
+
+                  <p className="text-white/90 leading-relaxed mb-8">
+                    Explore teams, players,
+                    live scores, venues and highlights.
+                  </p>
+
+                  <button
+                    className="
+                      w-full
+                      bg-white
+                      text-black
+                      font-bold
+                      py-3
+                      rounded-xl
+                      hover:bg-yellow-300
+                      transition
+                    "
+                  >
+                    Explore →
+                  </button>
+
                 </div>
+              </Link>
+            ))}
 
-                <h3 className="text-2xl font-bold">
-                  {sport.name}
-                </h3>
+          </div>
 
-                <p className="mt-2 text-sm">
-                  Click to Explore
-                </p>
-              </div>
-            </Link>
-          ))}
         </div>
+
       </div>
     </div>
   );

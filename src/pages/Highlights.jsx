@@ -3,105 +3,137 @@ import { useParams } from "react-router-dom";
 function Highlights() {
   const { sport } = useParams();
 
-  const highlightData = {
+  const sportBackgrounds = {
+    football:
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1600",
+    cricket:
+      "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=1600",
+    basketball:
+      "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1600",
+    baseball:
+      "https://images.unsplash.com/photo-1508344928928-7165b67de128?w=1600",
+    volleyball:
+      "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1600",
+    hockey:
+      "https://images.unsplash.com/photo-1511886929837-354d827aae26?w=1600",
+    rugby:
+      "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=1600",
+  };
+
+  const highlights = {
     football: [
-      "⚽ Messi scores a stunning free kick",
-      "🔥 Premier League Match Highlights",
-      "🏆 Champions League Final Moments"
+      "⚽ Messi's Amazing Free Kick",
+      "🏆 Champions League Final",
+      "🔥 Premier League Best Goals",
+      "🎯 Top 10 Goals of the Season",
+      "🥅 Incredible Saves Compilation",
+      "⭐ FIFA World Cup Highlights",
     ],
 
     cricket: [
-      "🏏 Virat Kohli Century Highlights",
-      "🔥 IPL Best Sixes Compilation",
-      "🏆 India vs Australia Match Highlights"
+      "🏏 Virat Kohli Century",
+      "🔥 IPL Best Sixes",
+      "🏆 India vs Australia Thriller",
+      "💥 Fastest Fifties",
+      "🎯 Best Bowling Spells",
+      "👏 World Cup Final Highlights",
     ],
 
     basketball: [
-      "🏀 LeBron James Top Plays",
-      "🔥 NBA Dunk Highlights",
-      "🏆 NBA Finals Best Moments"
+      "🏀 NBA Top 10 Plays",
+      "🔥 LeBron Best Dunks",
+      "⭐ Stephen Curry Threes",
+      "🏆 NBA Finals Highlights",
+      "💥 Slam Dunk Contest",
+      "🎯 Best Buzzer Beaters",
     ],
 
     baseball: [
-      "⚾ Home Run Highlights",
+      "⚾ Home Run Compilation",
       "🔥 MLB Top Plays",
-      "🏆 World Series Highlights"
+      "🏆 World Series Highlights",
+      "👏 Amazing Catches",
     ],
 
     volleyball: [
-      "🏐 Amazing Volleyball Spikes",
-      "🔥 Nations League Highlights",
-      "🏆 Championship Final Moments"
+      "🏐 Powerful Spikes",
+      "⭐ Nations League Highlights",
+      "🏆 Championship Final",
+      "🔥 Best Blocks",
     ],
 
     hockey: [
-      "🏑 Top Goals Compilation",
-      "🔥 Hockey World Cup Highlights",
-      "🏆 Tournament Best Moments"
+      "🏑 Top Goals",
+      "🏆 Hockey World Cup",
+      "🔥 Amazing Saves",
+      "⭐ Best Moments",
     ],
 
     rugby: [
-      "🏉 Best Rugby Tries",
-      "🔥 Super Rugby Highlights",
-      "🏆 Championship Winning Moments"
-    ]
+      "🏉 Best Tries",
+      "🏆 Super Rugby Final",
+      "🔥 Greatest Tackles",
+      "⭐ Championship Highlights",
+    ],
   };
 
-  const highlights = highlightData[sport] || [];
-
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div
+      className="min-h-screen bg-cover bg-center"
+      style={{
+        backgroundImage: `url(${sportBackgrounds[sport]})`,
+      }}
+    >
+      <div className="min-h-screen bg-black/80">
 
-      <h1 className="text-5xl font-bold text-center mb-3">
-        🎥 {sport?.toUpperCase()} HIGHLIGHTS
-      </h1>
+        <div className="max-w-7xl mx-auto px-6 py-16">
 
-      <p className="text-center text-xl text-gray-600 font-semibold mb-10">
-        Watch the most exciting moments from {sport}
-      </p>
+          <div className="text-center mb-12">
 
-      {highlights.length === 0 && (
-        <div className="text-center py-10">
-          <h2 className="text-3xl font-bold text-gray-500">
-            No highlights available 😔
-          </h2>
-        </div>
-      )}
+            <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-4">
+              🎥 {sport?.toUpperCase()} HIGHLIGHTS
+            </h1>
 
-      <div className="grid md:grid-cols-3 gap-6">
-
-        {highlights.map((highlight, index) => (
-
-          <div
-            key={index}
-            className="
-            bg-white
-            rounded-2xl
-            shadow-xl
-            p-8
-            text-center
-            hover:scale-105
-            hover:bg-red-500
-            hover:text-white
-            duration-300
-            border
-            "
-          >
-
-            <div className="text-6xl mb-4">
-              🎬
-            </div>
-
-            <h2 className="text-xl font-bold">
-              {highlight}
-            </h2>
+            <p className="text-xl text-gray-200">
+              Relive the most exciting moments in {sport}
+            </p>
 
           </div>
 
-        ))}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            {(highlights[sport] || []).map((item, index) => (
+
+              <div
+                key={index}
+                className="backdrop-blur-md bg-white/10 border border-white/20 rounded-3xl p-8 text-white shadow-2xl hover:scale-105 hover:bg-white/20 transition-all duration-300"
+              >
+
+                <div className="text-6xl text-center mb-6">
+                  🎬
+                </div>
+
+                <h2 className="text-2xl font-bold text-center mb-4">
+                  Highlight {index + 1}
+                </h2>
+
+                <p className="text-center text-gray-200 leading-relaxed">
+                  {item}
+                </p>
+
+                <button className="mt-8 w-full bg-white text-black py-3 rounded-xl font-bold hover:bg-yellow-300 transition">
+                  Watch Highlight →
+                </button>
+
+              </div>
+
+            ))}
+
+          </div>
+
+        </div>
 
       </div>
-
     </div>
   );
 }
